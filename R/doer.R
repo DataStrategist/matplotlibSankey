@@ -6,20 +6,72 @@
 #   scipy <<- reticulate::import("matplotlib", delay_load = TRUE)
 # }
 
+#' @title install python library matplotlib
+#' @description FUNCTION_DESCRIPTION
+#' @param method PARAM_DESCRIPTION, Default: 'auto'
+#' @param conda PARAM_DESCRIPTION, Default: 'auto'
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#' install_matplotlib()
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[reticulate]{py_install}}
+#' @rdname install_matplotlib
+#' @export
+#' @importFrom reticulate py_install
 install_matplotlib <- function(method = "auto", conda = "auto") {
   reticulate::py_install("matplotlib", method = method, conda = conda)
 }
 
-install_matplotlib()
-
-example1 <- data.frame(
-  flows = c(0.25, 0.15, 0.60, -0.20, -0.15, -0.05, -0.50, -0.10),
-  labels = c("", "", "", "First", "Second", "Third", "Fourth", "Fifth"),
-  orientations = c(-1, 1, 0, 1, 1, 1, 0, -1),
-  pathlengths=10
-)
-
-
+#' @title create sankey visual
+#' @description FUNCTION_DESCRIPTION
+#' @param x PARAM_DESCRIPTION
+#' @param settings_scale PARAM_DESCRIPTION, Default: 0.01
+#' @param settings_offset PARAM_DESCRIPTION, Default: 0.2
+#' @param settings_head_angle PARAM_DESCRIPTION, Default: 90
+#' @param settings_format PARAM_DESCRIPTION, Default: "\%.0f"
+#' @param settings_unit PARAM_DESCRIPTION, Default: "\%"
+#' @param fig_title PARAM_DESCRIPTION
+#' @param sankey_label PARAM_DESCRIPTION, Default: ""
+#' @param sankey_color PARAM_DESCRIPTION, Default: FALSE
+#' @param center_text_bold PARAM_DESCRIPTION, Default: FALSE
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  example1 <- data.frame(
+#'  flows = c(0.25, 0.15, 0.60, -0.20, -0.15, -0.05, -0.50, -0.10),
+#'  labels = c("", "", "", "First", "Second", "Third", "Fourth", "Fifth"),
+#'  orientations = c(-1, 1, 0, 1, 1, 1, 0, -1),
+#'  pathlengths=10
+#'  )
+#'
+#'  example2 <- data.frame(
+#'  flows = c(15, 0, 60, -10, -20, -5, -15, -30, -20),
+#'  labels = c('', '', '', 'First', 'Second', 'Third', 'Looooooong Fourth',
+#'  'Fifth', 'Hurray!'),
+#'    orientations = c(-1, 1, 0, 1, 1, 1, -1, 1, 0),
+#'  pathlengths = c(0.25, 0.25, 0.25, 0.25, 0.25, 0.1, .5, 0.25,
+#'  0.25),
+#'  color='r'
+#'  )
+#'
+#'  sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system")
+#'
+#'  }
+#' }
+#' @seealso
+#'  \code{\link[reticulate]{source_python}}
+#' @rdname sankey
+#' @export
+#' @importFrom reticulate source_python
 sankey <- function(x,
                    settings_scale=0.01,
                    settings_offset=0.2,
@@ -41,14 +93,3 @@ sankey <- function(x,
        settings_unit, fig_title, sankey_label, sankey_color, center_text_bold)
 }
 
-example2 <- data.frame(
-  flows = c(15, 0, 60, -10, -20, -5, -15, -30, -20),
-  labels = c('', '', '', 'First', 'Second', 'Third', 'Looooooong Fourth',
-             'Fifth', 'Hurray!'),
-  orientations = c(-1, 1, 0, 1, 1, 1, -1, 1, 0),
-  pathlengths = c(0.25, 0.25, 0.25, 0.25, 0.25, 0.1, .5, 0.25,
-                  0.25),
-  color='r'
-)
-
-sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system")
