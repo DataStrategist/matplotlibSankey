@@ -7,15 +7,28 @@
 install_matplotlib(method = "auto", conda = "auto")
 }
 \arguments{
-\item{method}{PARAM_DESCRIPTION, Default: 'auto'}
+\item{method}{method is passed to python installer. Default values are
+probably what beginners want, although experienced might refer to the
+reticulate documentation:
+https://rstudio.github.io/reticulate/articles/package.html, Default: 'auto'}
 
-\item{conda}{PARAM_DESCRIPTION, Default: 'auto'}
+\item{conda}{conda is passed to python installer. Default values are probably
+what beginners want, although experienced might refer to the reticulate
+documentation: https://rstudio.github.io/reticulate/articles/package.html,
+Default: 'auto'}
 }
 \value{
-OUTPUT_DESCRIPTION
+nothing, but the matplotlib Python library will be installed in your
+  current environment, enabling you to run the `sankey` function.
 }
 \description{
-FUNCTION_DESCRIPTION
+This function (and package) depend on the Python library
+  matplotlib. The simplest way this could work would be for users to use
+  miniconda, and then just run this function to install that library within
+  their environment. For context, Python uses virtual environments a lot more
+  than R does, so this could be important if you do a lot of Python work.
+  Since this is only one library, it is probably safest to just leave the
+  settings as per the defaults.
 }
 \details{
 DETAILS

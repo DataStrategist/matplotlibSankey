@@ -11,7 +11,8 @@ def fun3(ddf, x, settings_scale, settings_offset, settings_head_angle, settings_
   fig = plt.figure()
   ax = fig.add_subplot(1, 1, 1, xticks=[], yticks=[],
                        title=fig_title)
-  sankey = Sankey(ax=ax, scale=0.01, offset=0.2, head_angle=90, format='%.0f', unit='%')
+  sankey = Sankey(ax=ax, scale=settings_scale, offset=settings_offset, 
+      head_angle=settings_head_angle, format=settings_format, unit=settings_unit)
   sankey.add(flows=ddf["flows"], labels=ddf["labels"], orientations=ddf["orientations"], pathlengths=ddf["pathlengths"],
              patchlabel=sankey_label)  # Arguments to matplotlib.patches.PathPatch
   diagrams = sankey.finish()

@@ -11,38 +11,45 @@ sankey(
   settings_head_angle = 90,
   settings_format = "\%.0f",
   settings_unit = "\%",
-  fig_title,
+  fig_title = "",
   sankey_label = "",
   sankey_color = FALSE,
   center_text_bold = FALSE
 )
 }
 \arguments{
-\item{x}{PARAM_DESCRIPTION}
+\item{x}{a dataframe with at least two columns: `flows`, `orientations`. All
+other fields are optional}
 
-\item{settings_scale}{PARAM_DESCRIPTION, Default: 0.01}
+\item{settings_scale}{How "tall" the plot should be, and by extension, how
+wide or compact the plot looks. Lower numbers imply the San is not very
+tall, resulting in more definition in the arrow flows. Default: 0.01}
 
-\item{settings_offset}{PARAM_DESCRIPTION, Default: 0.2}
+\item{settings_offset}{How far should labels be from their arrows. Lower
+numbers are closer, Default: 0.2}
 
-\item{settings_head_angle}{PARAM_DESCRIPTION, Default: 90}
+\item{settings_head_angle}{angle of each arrow's head. Results above 180 will
+look wonky, Default: 90}
 
-\item{settings_format}{PARAM_DESCRIPTION, Default: "\%.0f"}
+\item{settings_format}{unsure, Default: "\%.0f"}
 
-\item{settings_unit}{PARAM_DESCRIPTION, Default: "\%"}
+\item{settings_unit}{units for labels, Default: "\%"}
 
-\item{fig_title}{PARAM_DESCRIPTION}
+\item{fig_title}{Title for the visual (on top of the frame), Default: ""}
 
-\item{sankey_label}{PARAM_DESCRIPTION, Default: ""}
+\item{sankey_label}{Text to visualize within the arrow's body, Default: ""}
 
-\item{sankey_color}{PARAM_DESCRIPTION, Default: FALSE}
+\item{sankey_color}{The fill color of the Sankey, Default: FALSE}
 
-\item{center_text_bold}{PARAM_DESCRIPTION, Default: FALSE}
+\item{center_text_bold}{Should the `sankey_label` be bold? Default: FALSE}
 }
 \value{
 OUTPUT_DESCRIPTION
 }
 \description{
-FUNCTION_DESCRIPTION
+This is the main function of this package, and allows for the
+  creation of a Sankey visual that is one arrow with flows flowing from it
+  FUNCTION_DESCRIPTION
 }
 \details{
 DETAILS
@@ -52,14 +59,7 @@ DETAILS
 if(interactive()){
  #EXAMPLE1
  example1 <- data.frame(
- flows = c(0.25, 0.15, 0.60, -0.20, -0.15, -0.05, -0.50, -0.10),
- labels = c("", "", "", "First", "Second", "Third", "Fourth", "Fifth"),
- orientations = c(-1, 1, 0, 1, 1, 1, 0, -1),
- pathlengths=10
- )
-
- example2 <- data.frame(
- flows = c(15, 0, 60, -10, -20, -5, -15, -30, -20),
+ flows = c(15, 0, 60, -10, -20, -5, -15, -30, -20.004),
  labels = c('', '', '', 'First', 'Second', 'Third', 'Looooooong Fourth',
  'Fifth', 'Hurray!'),
    orientations = c(-1, 1, 0, 1, 1, 1, -1, 1, 0),
@@ -68,7 +68,21 @@ if(interactive()){
  color='r'
  )
 
- sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system")
+ sankey(x = example1, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system")
+
+ ## settings_scale changes how the plot looks. Compare the following:
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_scale = 0.01)
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_scale = 0.1)
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_scale = 0.001)
+
+ ## settings_offset moves labels
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_offset = 0.0001)
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_offset = 0.1)
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_offset = 1)
+
+ ## settings_head_angle changes the angles of the arrows
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_head_angle = 180)
+ sankey(x = example2, fig_title = "Boom?", sankey_color = "lightblue", sankey_label = "the whole system", settings_head_angle = 30)
 
  }
 }
